@@ -1,0 +1,920 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>50 Binance Trading Prompts — Copy Library</title>
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --muted: #9aa4b2;
+      --text: #e6edf3;
+      --border: rgba(255,255,255,.08);
+      --btn: rgba(255,255,255,.10);
+      --btnHover: rgba(255,255,255,.16);
+      --radius: 16px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(900px 600px at 20% -10%, rgba(99,102,241,.15), transparent 70%),
+                  radial-gradient(900px 600px at 80% 0%, rgba(16,185,129,.12), transparent 70%),
+                  var(--bg);
+      color: var(--text);
+    }
+    header {
+      padding: 22px 16px 12px;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 20px;
+      margin: 0 0 8px 0;
+      letter-spacing: .2px;
+    }
+    .sub {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.4;
+    }
+    .bar {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    @media (min-width: 720px) {
+      .bar { grid-template-columns: 1.5fr .7fr .7fr; }
+    }
+    input, select {
+      width: 100%;
+      padding: 12px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: #565656;
+      color: var(--text);
+      outline: none;
+    }
+    input::placeholder { color: rgba(230,237,243,.45); }
+    main {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 10px 16px 40px;
+    }
+    .grid {
+      display: grid;
+      gap: 12px;
+    }
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px;
+      overflow: hidden;
+    }
+    .top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .meta {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 0;
+    }
+    .id {
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .title {
+      font-size: 15px;
+      font-weight: 650;
+      margin: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .cat {
+      font-size: 12px;
+      color: #51d2d9;
+    }
+    .btns {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    button {
+      border: 1px solid var(--border);
+      background: var(--btn);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 13px;
+    }
+    button:hover { background: var(--btnHover); }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 10px;
+      width: fit-content;
+    }
+    .prompt {
+      margin: 0;
+      white-space: pre-wrap;
+      line-height: 1.45;
+      font-size: 13.5px;
+      background: rgba(0,0,0,.20);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px;
+    }
+    .toast {
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 16px;
+      background: rgba(0,0,0,.65);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s ease;
+    }
+    .toast.show { opacity: 1; }
+    .hint {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .small {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 6px;
+    }
+    .footer {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 16px 28px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+    .kbd {
+      border: 1px solid var(--border);
+      padding: 2px 8px;
+      border-radius: 8px;
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      font-weight: 650;
+      font-size: 12px;
+	} 
+
+	#search::placeholder {
+  color: #ffffff;
+  opacity: 1; /* ensures full white on all browsers */
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>50 Binance Trading Prompts — Copy Library</h1>
+    <div class="sub">
+      Mobile-first copy page: search, filter, and copy any prompt in one tap.
+      <div class="small">Tip: On desktop, press <span class="kbd">Ctrl</span> + <span class="kbd">F</span> to find keywords fast.</div>
+    </div>
+
+    <div class="bar">
+      <input id="search" placeholder="Search prompts (e.g., breakout, scalping, stop loss, 1D)..." />
+      <select id="category">
+        <option value="all">All categories</option>
+      </select>
+      <select id="sort">
+        <option id ="sorr" value="id-asc">Sort: ID (low → high)</option>
+        <option value="id-desc">Sort: ID (high → low)</option>
+        <option value="title-asc">Sort: Title (A → Z)</option>
+        <option value="title-desc">Sort: Title (Z → A)</option>
+      </select>
+    </div>
+
+    <div class="hint"></div>
+  </header>
+
+  <main>
+    <div id="grid" class="grid"></div>
+  </main>
+
+  <div class="footer">
+   
+    <div><strong>Privacy:</strong> This page runs fully in the browser. No analytics or tracking is included by default.</div>
+  </div>
+
+  <div id="toast" class="toast">Copied ✅</div>
+
+  <script>
+    // Replace/extend this list with your real prompts (250 entries).
+    // Format: { id: "001", title: "...", category: "...", tags: ["..."], prompt: "..." }
+    const PROMPTS = [
+  {
+    "id": "001",
+    "title": "professional crypto market analyst",
+    "category": "Market Analysis",
+    "tags": [
+      "analysis",
+      "trend",
+      "levels"
+    ],
+    "prompt": "Act as a professional crypto market analyst.\nAnalyze the current BTC/USDT market on Binance using recent price action and volume behavior.\nIdentify the overall trend, momentum strength, and any early warning signs.\nSummarize your findings in clear bullet points."
+  },
+  {
+    "id": "002",
+    "title": "market structure analyst",
+    "category": "Market Analysis",
+    "tags": [
+      "analysis",
+      "trend",
+      "levels"
+    ],
+    "prompt": "Act as a market structure analyst.\nExamine recent highs and lows on Binance to determine whether the market is trending, ranging, or transitioning.\nExplain your conclusion using simple, logical reasoning."
+  },
+  {
+    "id": "003",
+    "title": "trend analysis specialist",
+    "category": "Market Analysis",
+    "tags": [
+      "analysis",
+      "trend",
+      "levels"
+    ],
+    "prompt": "Act as a trend analysis specialist.\nAnalyze whether the current market trend is strong, weakening, or potentially reversing based on price structure and volume changes.\nHighlight key areas traders should pay attention to."
+  },
+  {
+    "id": "004",
+    "title": "multi-timeframe analyst",
+    "category": "Market Analysis",
+    "tags": [
+      "analysis",
+      "trend",
+      "levels"
+    ],
+    "prompt": "Act as a multi-timeframe analyst.\nAnalyze the same trading pair across a higher timeframe and a lower timeframe.\nExplain whether the trends are aligned or conflicting and what that implies for decision-making."
+  },
+  {
+    "id": "005",
+    "title": "market context analyst",
+    "category": "Market Analysis",
+    "tags": [
+      "analysis",
+      "trend",
+      "levels"
+    ],
+    "prompt": "Act as a market context analyst.\nAnalyze the current market environment on Binance and determine whether conditions favor aggressive trading, conservative trading, or patience.\nExplain your reasoning clearly and objectively."
+  },
+  {
+    "id": "006",
+    "title": "crypto market analyst",
+    "category": "Market Analysis",
+    "tags": [
+      "analysis",
+      "trend",
+      "levels"
+    ],
+    "prompt": "Act as a crypto market analyst.\nAnalyze ETH/USDT on Binance using recent price structure and volume behavior.\nIdentify trend strength, key levels, and possible consolidation zones.\nSummarize in bullet points."
+  },
+  {
+    "id": "007",
+    "title": "technical analyst",
+    "category": "Market Analysis",
+    "tags": [
+      "analysis",
+      "trend",
+      "levels"
+    ],
+    "prompt": "Act as a technical analyst.\nAnalyze the current market phase (accumulation, markup, distribution, markdown) based on the following price data.\nExplain your reasoning clearly."
+  },
+  {
+    "id": "008",
+    "title": "crypto analyst",
+    "category": "Market Analysis",
+    "tags": [
+      "analysis",
+      "trend",
+      "levels"
+    ],
+    "prompt": "Act as a crypto analyst.\nCompare BTC dominance and total market capitalization to assess overall market sentiment.\nExplain how this may affect altcoins."
+  },
+  {
+    "id": "009",
+    "title": "volatility analyst",
+    "category": "Market Analysis",
+    "tags": [
+      "analysis",
+      "trend",
+      "levels"
+    ],
+    "prompt": "Act as a volatility analyst.\nAnalyze recent price swings on Binance and determine whether the market favors scalping, swing trading, or staying out."
+  },
+  {
+    "id": "010",
+    "title": "support and resistance specialist",
+    "category": "Market Analysis",
+    "tags": [
+      "analysis",
+      "trend",
+      "levels"
+    ],
+    "prompt": "Act as a support and resistance specialist.\nIdentify strong and weak support/resistance zones from recent price action and explain why they matter."
+  },
+  {
+    "id": "011",
+    "title": "Binance trade planning assistant",
+    "category": "Trade Planning",
+    "tags": [
+      "plan",
+      "spot",
+      "futures"
+    ],
+    "prompt": "Act as a Binance trade planning assistant.\nHelp me plan a spot trade using conservative risk principles.\nFocus on logic, not prediction."
+  },
+  {
+    "id": "012",
+    "title": "futures trade planner",
+    "category": "Trade Planning",
+    "tags": [
+      "plan",
+      "spot",
+      "futures"
+    ],
+    "prompt": "Act as a futures trade planner.\nGiven my leverage and risk tolerance, help me structure a trade plan that avoids liquidation risk."
+  },
+  {
+    "id": "013",
+    "title": "trading assistant",
+    "category": "Trade Planning",
+    "tags": [
+      "plan",
+      "spot",
+      "futures"
+    ],
+    "prompt": "Act as a trading assistant.\nHelp me decide whether to trade or stay out based on current market uncertainty."
+  },
+  {
+    "id": "014",
+    "title": "crypto strategist",
+    "category": "Trade Planning",
+    "tags": [
+      "plan",
+      "spot",
+      "futures"
+    ],
+    "prompt": "Act as a crypto strategist.\nConvert my market bias into a structured trade plan with clear invalidation points."
+  },
+  {
+    "id": "015",
+    "title": "disciplined trader",
+    "category": "Trade Planning",
+    "tags": [
+      "plan",
+      "spot",
+      "futures"
+    ],
+    "prompt": "Act as a disciplined trader.\nHelp me create a rule-based plan instead of emotional decision-making."
+  },
+  {
+    "id": "016",
+    "title": "crypto risk manager",
+    "category": "Risk Management",
+    "tags": [
+      "risk",
+      "position-size",
+      "discipline"
+    ],
+    "prompt": "Act as a crypto risk manager.\nHelp me calculate a position size based on fixed percentage risk per trade."
+  },
+  {
+    "id": "017",
+    "title": "futures risk analyst",
+    "category": "Risk Management",
+    "tags": [
+      "risk",
+      "position-size",
+      "discipline"
+    ],
+    "prompt": "Act as a futures risk analyst.\nExplain how funding rates and leverage impact long-term risk."
+  },
+  {
+    "id": "018",
+    "title": "drawdown control assistant",
+    "category": "Risk Management",
+    "tags": [
+      "risk",
+      "position-size",
+      "discipline"
+    ],
+    "prompt": "Act as a drawdown control assistant.\nHelp me define daily and weekly loss limits and explain why they matter."
+  },
+  {
+    "id": "019",
+    "title": "capital preservation expert",
+    "category": "Risk Management",
+    "tags": [
+      "risk",
+      "position-size",
+      "discipline"
+    ],
+    "prompt": "Act as a capital preservation expert.\nAnalyze my recent losses and suggest adjustments to protect my trading capital."
+  },
+  {
+    "id": "020",
+    "title": "risk discipline coach",
+    "category": "Risk Management",
+    "tags": [
+      "risk",
+      "position-size",
+      "discipline"
+    ],
+    "prompt": "Act as a risk discipline coach.\nHelp me identify habits that increase unnecessary risk."
+  },
+  {
+    "id": "021",
+    "title": "trade execution assistant",
+    "category": "Entry & Exit Logic",
+    "tags": [
+      "trading"
+    ],
+    "prompt": "Act as a trade execution assistant.\nHelp me refine my entry logic to avoid chasing price."
+  },
+  {
+    "id": "022",
+    "title": "market timing analyst",
+    "category": "Entry & Exit Logic",
+    "tags": [
+      "trading"
+    ],
+    "prompt": "Act as a market timing analyst.\nHelp me recognize poor entry conditions based on volatility and spread behavior."
+  },
+  {
+    "id": "023",
+    "title": "stop-loss optimization assistant",
+    "category": "Entry & Exit Logic",
+    "tags": [
+      "trading"
+    ],
+    "prompt": "Act as a stop-loss optimization assistant.\nExplain how to place stop losses logically rather than emotionally."
+  },
+  {
+    "id": "024",
+    "title": "take-profit strategist",
+    "category": "Entry & Exit Logic",
+    "tags": [
+      "trading"
+    ],
+    "prompt": "Act as a take-profit strategist.\nHelp me structure partial profit-taking to reduce emotional pressure."
+  },
+  {
+    "id": "025",
+    "title": "trade confirmation assistant",
+    "category": "Entry & Exit Logic",
+    "tags": [
+      "trading"
+    ],
+    "prompt": "Act as a trade confirmation assistant.\nHelp me confirm whether my trade idea aligns with market structure."
+  },
+  {
+    "id": "026",
+    "title": "trading psychologist",
+    "category": "Psychology & Discipline",
+    "tags": [
+      "mindset",
+      "discipline",
+      "habits"
+    ],
+    "prompt": "Act as a trading psychologist.\nHelp me identify emotional patterns affecting my decision-making."
+  },
+  {
+    "id": "027",
+    "title": "discipline coach",
+    "category": "Psychology & Discipline",
+    "tags": [
+      "mindset",
+      "discipline",
+      "habits"
+    ],
+    "prompt": "Act as a discipline coach.\nHelp me build a routine to avoid overtrading."
+  },
+  {
+    "id": "028",
+    "title": "mindset mentor",
+    "category": "Psychology & Discipline",
+    "tags": [
+      "mindset",
+      "discipline",
+      "habits"
+    ],
+    "prompt": "Act as a mindset mentor.\nHelp me accept losses without revenge trading."
+  },
+  {
+    "id": "029",
+    "title": "consistency coach",
+    "category": "Psychology & Discipline",
+    "tags": [
+      "mindset",
+      "discipline",
+      "habits"
+    ],
+    "prompt": "Act as a consistency coach.\nHelp me stick to my trading rules during high volatility."
+  },
+  {
+    "id": "030",
+    "title": "self-review assistant",
+    "category": "Psychology & Discipline",
+    "tags": [
+      "mindset",
+      "discipline",
+      "habits"
+    ],
+    "prompt": "Act as a self-review assistant.\nHelp me evaluate whether my expectations are realistic."
+  },
+  {
+    "id": "031",
+    "title": "trading journal assistant",
+    "category": "Post-Trade Review & Journaling",
+    "tags": [
+      "review",
+      "journal",
+      "improvement"
+    ],
+    "prompt": "Act as a trading journal assistant.\nAnalyze this completed trade and extract actionable lessons."
+  },
+  {
+    "id": "032",
+    "title": "performance analyst",
+    "category": "Post-Trade Review & Journaling",
+    "tags": [
+      "review",
+      "journal",
+      "improvement"
+    ],
+    "prompt": "Act as a performance analyst.\nHelp me identify recurring mistakes from multiple trades."
+  },
+  {
+    "id": "033",
+    "title": "strategy evaluator",
+    "category": "Post-Trade Review & Journaling",
+    "tags": [
+      "review",
+      "journal",
+      "improvement"
+    ],
+    "prompt": "Act as a strategy evaluator.\nHelp me determine whether my strategy fits current market conditions."
+  },
+  {
+    "id": "034",
+    "title": "growth coach",
+    "category": "Post-Trade Review & Journaling",
+    "tags": [
+      "review",
+      "journal",
+      "improvement"
+    ],
+    "prompt": "Act as a growth coach.\nHelp me convert losses into structured improvement steps."
+  },
+  {
+    "id": "035",
+    "title": "trading data analyst",
+    "category": "Post-Trade Review & Journaling",
+    "tags": [
+      "review",
+      "journal",
+      "improvement"
+    ],
+    "prompt": "Act as a trading data analyst.\nSummarize my trading results into strengths and weaknesses."
+  },
+  {
+    "id": "036",
+    "title": "daily trading assistant",
+    "category": "Daily & Weekly Routine Prompts",
+    "tags": [
+      "routine",
+      "checklist",
+      "consistency"
+    ],
+    "prompt": "Act as a daily trading assistant.\nHelp me prepare mentally and technically before trading."
+  },
+  {
+    "id": "037",
+    "title": "market recap assistant",
+    "category": "Daily & Weekly Routine Prompts",
+    "tags": [
+      "routine",
+      "checklist",
+      "consistency"
+    ],
+    "prompt": "Act as a market recap assistant.\nSummarize today\u2019s market behavior and key lessons."
+  },
+  {
+    "id": "038",
+    "title": "weekly review assistant",
+    "category": "Daily & Weekly Routine Prompts",
+    "tags": [
+      "routine",
+      "checklist",
+      "consistency"
+    ],
+    "prompt": "Act as a weekly review assistant.\nHelp me evaluate progress without focusing only on profit."
+  },
+  {
+    "id": "039",
+    "title": "habit-building assistant",
+    "category": "Daily & Weekly Routine Prompts",
+    "tags": [
+      "routine",
+      "checklist",
+      "consistency"
+    ],
+    "prompt": "Act as a habit-building assistant.\nHelp me design a sustainable trading routine."
+  },
+  {
+    "id": "040",
+    "title": "decision-filter assistant",
+    "category": "Daily & Weekly Routine Prompts",
+    "tags": [
+      "routine",
+      "checklist",
+      "consistency"
+    ],
+    "prompt": "Act as a decision-filter assistant.\nHelp me decide whether a trade is worth taking or skipping."
+  },
+  {
+    "id": "041",
+    "title": "pre-trade checklist assistant",
+    "category": "Daily & Weekly Routine Prompts",
+    "tags": [
+      "routine",
+      "checklist",
+      "consistency"
+    ],
+    "prompt": "Act as a pre-trade checklist assistant.\nHelp me verify whether my trade idea meets my predefined rules before execution.\nHighlight any rule violations or warning signs."
+  },
+  {
+    "id": "042",
+    "title": "discipline reinforcement assistant",
+    "category": "Daily & Weekly Routine Prompts",
+    "tags": [
+      "routine",
+      "checklist",
+      "consistency"
+    ],
+    "prompt": "Act as a discipline reinforcement assistant.\nHelp me identify situations where I should avoid trading, even if a setup looks attractive.\nExplain the risks clearly."
+  },
+  {
+    "id": "043",
+    "title": "capital protection advisor",
+    "category": "Daily & Weekly Routine Prompts",
+    "tags": [
+      "routine",
+      "checklist",
+      "consistency"
+    ],
+    "prompt": "Act as a capital protection advisor.\nAnalyze my recent trading activity and help me determine whether I should reduce risk or take a break.\nFocus on long-term sustainability."
+  },
+  {
+    "id": "044",
+    "title": "decision clarity assistant",
+    "category": "Daily & Weekly Routine Prompts",
+    "tags": [
+      "routine",
+      "checklist",
+      "consistency"
+    ],
+    "prompt": "Act as a decision clarity assistant.\nHelp me simplify my current trade idea by removing unnecessary assumptions or complexity.\nPresent the final logic in a clear, structured way."
+  },
+  {
+    "id": "045",
+    "title": "risk review assistant",
+    "category": "Daily & Weekly Routine Prompts",
+    "tags": [
+      "routine",
+      "checklist",
+      "consistency"
+    ],
+    "prompt": "Act as a risk review assistant.\nReview my current exposure across multiple positions and identify any concentration risks.\nExplain how to improve balance."
+  },
+  {
+    "id": "046",
+    "title": "performance consistency assistant",
+    "category": "Daily & Weekly Routine Prompts",
+    "tags": [
+      "routine",
+      "checklist",
+      "consistency"
+    ],
+    "prompt": "Act as a performance consistency assistant.\nHelp me identify whether my recent results come from skill, luck, or market conditions.\nExplain your reasoning objectively."
+  },
+  {
+    "id": "047",
+    "title": "trading routine optimizer",
+    "category": "Daily & Weekly Routine Prompts",
+    "tags": [
+      "routine",
+      "checklist",
+      "consistency"
+    ],
+    "prompt": "Act as a trading routine optimizer.\nHelp me improve my daily trading process to reduce fatigue and emotional mistakes."
+  },
+  {
+    "id": "048",
+    "title": "long-term improvement coach",
+    "category": "Daily & Weekly Routine Prompts",
+    "tags": [
+      "routine",
+      "checklist",
+      "consistency"
+    ],
+    "prompt": "Act as a long-term improvement coach.\nBased on my trading journal, suggest one or two focused areas I should work on next week."
+  },
+  {
+    "id": "049",
+    "title": "self-control assistant",
+    "category": "Daily & Weekly Routine Prompts",
+    "tags": [
+      "routine",
+      "checklist",
+      "consistency"
+    ],
+    "prompt": "Act as a self-control assistant.\nHelp me recognize early signs of overconfidence or fear affecting my decisions."
+  },
+  {
+    "id": "050",
+    "title": "trading clarity assistant",
+    "category": "Daily & Weekly Routine Prompts",
+    "tags": [
+      "routine",
+      "checklist",
+      "consistency"
+    ],
+    "prompt": "Act as a trading clarity assistant.\nHelp me summarize my current trading approach into a simple, repeatable framework I can follow consistently."
+  }
+];
+
+    const $grid = document.getElementById("grid");
+    const $search = document.getElementById("search");
+    const $category = document.getElementById("category");
+    const $sort = document.getElementById("sort");
+    const $toast = document.getElementById("toast");
+
+    function toast(msg) {
+      $toast.textContent = msg;
+      $toast.classList.add("show");
+      clearTimeout(window.__t);
+      window.__t = setTimeout(() => $toast.classList.remove("show"), 1000);
+    }
+
+    async function copyText(text) {
+      try {
+        await navigator.clipboard.writeText(text);
+        toast("Copied ✅");
+      } catch (e) {
+        // Fallback
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        document.body.removeChild(ta);
+        toast("Copied ✅");
+      }
+    }
+
+    function uniqueCategories() {
+      const set = new Set(PROMPTS.map(p => p.category));
+      return Array.from(set).sort((a,b) => a.localeCompare(b));
+    }
+
+    function buildCategoryFilter() {
+      const cats = uniqueCategories();
+      for (const c of cats) {
+        const opt = document.createElement("option");
+        opt.value = c;
+        opt.textContent = c;
+        $category.appendChild(opt);
+      }
+    }
+
+    function normalize(s) {
+      return (s || "").toString().toLowerCase();
+    }
+
+    function matches(p, q, cat) {
+      const query = normalize(q).trim();
+      const inCat = (cat === "all") || (p.category === cat);
+      if (!inCat) return false;
+      if (!query) return true;
+      const hay = normalize(
+        p.id + " " + p.title + " " + p.category + " " + (p.tags || []).join(" ") + " " + p.prompt
+      );
+      return hay.includes(query);
+    }
+
+    function sortPrompts(list, mode) {
+      const copy = [...list];
+      if (mode === "id-asc") copy.sort((a,b) => a.id.localeCompare(b.id));
+      if (mode === "id-desc") copy.sort((a,b) => b.id.localeCompare(a.id));
+      if (mode === "title-asc") copy.sort((a,b) => a.title.localeCompare(b.title));
+      if (mode === "title-desc") copy.sort((a,b) => b.title.localeCompare(a.title));
+      return copy;
+    }
+
+    function render() {
+      const q = $search.value;
+      const cat = $category.value;
+      const mode = $sort.value;
+
+      let list = PROMPTS.filter(p => matches(p, q, cat));
+      list = sortPrompts(list, mode);
+
+      $grid.innerHTML = "";
+      if (list.length === 0) {
+        const empty = document.createElement("div");
+        empty.className = "card";
+        empty.innerHTML = "<div class='title'>No matches</div><div class='small'>Try a different keyword or choose All categories.</div>";
+        $grid.appendChild(empty);
+        return;
+      }
+
+      for (const p of list) {
+        const card = document.createElement("div");
+        card.className = "card";
+
+        const top = document.createElement("div");
+        top.className = "top";
+
+        const meta = document.createElement("div");
+        meta.className = "meta";
+        meta.innerHTML = `
+          <div class="id">PROMPT ${p.id}</div>
+          <h3 class="title" title="${p.title}">${p.title}</h3>
+          <div class="cat">${p.category}</div>
+        `;
+
+        const btns = document.createElement("div");
+        btns.className = "btns";
+
+        const btnCopy = document.createElement("button");
+        btnCopy.textContent = "Copy prompt";
+        btnCopy.onclick = () => copyText(p.prompt);
+
+        const btnCopyWithTitle = document.createElement("button");
+        btnCopyWithTitle.textContent = "Copy with label";
+        btnCopyWithTitle.onclick = () => copyText(`PROMPT ${p.id} — ${p.title}
+
+${p.prompt}`);
+
+        btns.appendChild(btnCopy);
+        btns.appendChild(btnCopyWithTitle);
+
+        top.appendChild(meta);
+        top.appendChild(btns);
+
+        const pre = document.createElement("pre");
+        pre.className = "prompt";
+        pre.textContent = p.prompt;
+
+        const pill = document.createElement("div");
+        pill.className = "pill";
+        pill.textContent = (p.tags && p.tags.length) ? ("Tags: " + p.tags.join(", ")) : "Tags: —";
+
+        card.appendChild(top);
+        card.appendChild(pre);
+        card.appendChild(pill);
+
+        $grid.appendChild(card);
+      }
+    }
+
+    buildCategoryFilter();
+    render();
+
+    $search.addEventListener("input", render);
+    $category.addEventListener("change", render);
+    $sort.addEventListener("change", render);
+  </script>
+</body>
+</html>
